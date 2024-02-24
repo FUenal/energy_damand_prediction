@@ -1,0 +1,8 @@
+.env
+.env.sample
+data/
+**/__pycache__
+*.parquet
+*.shp
+*.pkl
+.TODOS
