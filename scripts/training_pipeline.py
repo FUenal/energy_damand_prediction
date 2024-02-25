@@ -72,7 +72,7 @@ def fetch_features_and_targets_from_store(
     return features_and_target
 
 
-def train_test_split(
+def split_data(
     features_and_target: pd.DataFrame,
     cutoff_date: pd.Timestamp,
 ) -> Tuple[pd.DataFrame, pd.Series, pd.DataFrame, pd.Series]:
@@ -80,7 +80,7 @@ def train_test_split(
     X_train, y_train, X_test, y_test = train_test_split(
         features_and_target,
         cutoff_date,
-        target_column_name='target_rides_next_hour'   
+        target_col_name='target_rides_next_hour'   
     )
     logger.info(f'{X_train.shape=}')
     logger.info(f'{y_train.shape=}')
