@@ -1,4 +1,6 @@
 from datetime import datetime, timedelta
+# Added for time comparison error
+from datetime import  timezone
 
 import pandas as pd
 import numpy as np
@@ -49,8 +51,10 @@ def load_batch_of_features_from_store(current_date: datetime) -> pd.DataFrame:
     feature_store = get_feature_store()
 
     # read time-series data from the feature store
-    fetch_data_to = current_date - timedelta(hours=1)
-    fetch_data_from = current_date - timedelta(days=28)
+    #fetch_data_to = current_date - timedelta(hours=1)
+    #fetch_data_from = current_date - timedelta(days=28)
+    fetch_data_from = (current_date - timedelta(days=28)).replace(tzinfo=timezone.utc)
+    fetch_data_to = (current_date - timedelta(hours=1)).replace(tzinfo=timezone.utc)
     print("FROM-TO DATA:\n", fetch_data_from, fetch_data_to, "\n\n\n")
     print(f'Fetching data from {fetch_data_from} to {fetch_data_to}')
     feature_view = feature_store.get_feature_view(

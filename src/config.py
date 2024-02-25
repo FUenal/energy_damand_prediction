@@ -7,7 +7,7 @@ from src.feature_store_api import FeatureGroupConfig, FeatureViewConfig
 # load key-value pairs from .env file located in the parent directory
 load_dotenv(PARENT_DIR / '.env')
 
-HOPSWORKS_PROJECT_NAME = 'taxi_demand'
+HOPSWORKS_PROJECT_NAME = 'taxi_demand_app'
 try:
     # HOPSWORKS_PROJECT_NAME = os.environ['HOPSWORKS_PROJECT_NAME']
     HOPSWORKS_API_KEY = os.environ['HOPSWORKS_API_KEY']
@@ -28,14 +28,17 @@ FEATURE_GROUP_METADATA = FeatureGroupConfig(
 
 # TODO: remove FEATURE_VIEW_NAME and FEATURE_VIEW_VERSION, and use FEATURE_VIEW_METADATA instead
 FEATURE_VIEW_NAME = 'time_series_hourly_feature_view'
-FEATURE_VIEW_VERSION = 4
+FEATURE_VIEW_VERSION = 3
 FEATURE_VIEW_METADATA = FeatureViewConfig(
     name='time_series_hourly_feature_view',
-    version=4,
+    version=3,
     feature_group=FEATURE_GROUP_METADATA,
 )
 
-MODEL_NAME = "taxi_demand_predictor"
+# Chaged MODEL_NAME
+MODEL_NAME = "taxi_demand_predictor_next_hour"
+# Added MODEL_VERSION
+MODEL_VERSION = 3
 
 # added for monitoring purposes
 # TODO remove FEATURE_GROUP_MODEL_PREDICTIONS and use FEATURE_GROUP_PREDICTIONS_METADATA instead
@@ -66,4 +69,4 @@ N_FEATURES = 24 * 28
 N_HYPERPARAMETER_SEARCH_TRIALS = 1
 
 # maximum Mean Absolute Error we allow our production model to have
-MAX_MAE = 30.0
+MAX_MAE = 7.0
